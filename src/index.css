@@ -1,0 +1,149 @@
+@import "tailwindcss";
+
+@theme {
+    --font-sans: "Vazirmatn Variable", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+    html {
+        color-scheme: dark;
+    }
+
+    body {
+        min-height: 100dvh;
+        background-color: #0b0720;
+        color: #e8e6f5;
+        font-family: var(--font-sans), serif;
+        -webkit-font-smoothing: antialiased;
+    }
+}
+
+@layer components {
+    .glass {
+        background: rgb(255 255 255 / 0.06);
+        border: 1px solid rgb(255 255 255 / 0.12);
+        box-shadow: 0 8px 32px rgb(10 4 40 / 0.45);
+        backdrop-filter: blur(16px);
+    }
+
+    .glass-soft {
+        background: rgb(255 255 255 / 0.06);
+        border: 1px solid rgb(255 255 255 / 0.1);
+    }
+
+    .text-gradient {
+        background-image: linear-gradient(to left, #fde68a, #f0abfc, #67e8f9);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+
+    .tab-trigger[data-state='active'] {
+        color: #fff;
+        background-image: linear-gradient(to left, #c026d3, #7c3aed, #0e7490);
+        box-shadow: 0 4px 20px rgb(168 85 247 / 0.45);
+    }
+}
+
+@keyframes float {
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+    50% {
+        transform: translate3d(3%, -4%, 0) scale(1.08);
+    }
+}
+
+@keyframes fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes dialog-in {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .aurora-orb {
+        animation: float 18s ease-in-out infinite;
+    }
+
+    .fade-up {
+        animation: fade-up 0.5s ease-out backwards;
+    }
+
+    .dialog-overlay[data-state='open'] {
+        animation: fade-in 0.2s ease-out;
+    }
+
+    .dialog-content[data-state='open'] {
+        animation: dialog-in 0.25s ease-out;
+    }
+}
+
+
+.field {
+    width: 100%;
+    border-radius: 0.875rem;
+    background: rgb(255 255 255 / 0.06);
+    border: 1px solid rgb(255 255 255 / 0.15);
+    padding: 0.7rem 0.9rem;
+    color: #fff;
+    transition: border-color 0.15s,
+    box-shadow 0.15s;
+}
+
+.field::placeholder {
+    color: rgb(148 163 184 / 0.8);
+}
+
+.field:focus-visible {
+    outline: none;
+    border-color: #e879f9;
+    box-shadow: 0 0 0 3px rgb(232 121 249 / 0.25);
+}
+
+.field[aria-invalid='true'] {
+    border-color: #fb7185;
+}
+
+select.field option {
+    background: #1a1038;
+    color: #fff;
+}
+
+.btn-primary {
+    background-image: linear-gradient(to left, #c026d3, #7c3aed, #0e7490);
+    box-shadow: 0 6px 24px rgb(168 85 247 / 0.4);
+}
+
+.btn-primary:hover:not(:disabled) {
+    filter: brightness(1.1);
+}
+
+.btn-primary:disabled {
+    opacity: 0.6;
+}
